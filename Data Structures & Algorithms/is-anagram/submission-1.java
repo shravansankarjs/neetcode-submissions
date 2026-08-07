@@ -1,0 +1,34 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        /*
+        Edge Cases:
+            1. empty string -> return false
+
+        Steps:
+            1. check length and return false if diff
+            2. Load char and count in HashMap
+            3. Loop through one string to check both the hashMap's count
+            4. If not matching, return false
+        */
+
+        if(s.length() != t.length()) {
+            return false;
+        }
+
+        Map<Character, Integer> sMap = new HashMap<>();
+        Map<Character, Integer> tMap = new HashMap<>();
+        
+        for(int i = 0 ; i < s.length(); i++) {
+            sMap.put(s.charAt(i), sMap.getOrDefault(s.charAt(i), 0) + 1);
+            tMap.put(t.charAt(i), tMap.getOrDefault(t.charAt(i), 0) + 1);
+        }
+
+        for(int i = 0 ; i < s.length(); i++) {
+            if(!(sMap.get(s.charAt(i)).equals(tMap.getOrDefault(s.charAt(i), -1)))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
